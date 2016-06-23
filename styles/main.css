@@ -1,0 +1,55 @@
+.search-icon {
+	margin-top: 10px;
+}
+a {
+	cursor: pointer;
+}
+#toast-container {
+  top: 10%;
+  right: auto;
+  bottom: auto;
+  left:10%; 
+}
+.header
+p {
+	font-size: 20px;
+	font-weight: bold;
+}
+.header
+a {
+	margin-top: 20px;
+}
+.stars-container {
+	font-size: 20px;
+  position: relative;
+  display: inline-block;
+  color: transparent;
+}
+
+.stars-container:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '★★★★★';
+  color: lightgray;
+}
+
+.stars-container:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '★★★★★';
+  color: gold;
+  overflow: hidden;
+}
+.stars0:after { width: 0%; }
+.stars10:after { width: 10%; }
+.stars20:after { width: 20%; }
+.stars30:after { width: 30%; }
+.stars40:after { width: 40%; }
+.stars50:after { width: 50%; }
+.stars60:after { width: 60%; }
+.stars70:after { width: 70%; }
+.stars80:after { width: 80%; }
+.stars90:after { width: 90%; }
+.stars100:after { width: 100; }

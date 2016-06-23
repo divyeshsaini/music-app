@@ -1,0 +1,94 @@
+<div class="row content">	
+	<div class="row header">
+		<div class="col s7 l6">
+			<p class="right-align">Music Tracks</p>
+		</div>
+		<div class="col s5 l4">
+			<a class="waves-effect waves-light btn" ng-click="trackCtrl.getGenre()">Genre</a>
+		</div>
+	</div>
+	<div class="input-field col offset-s3 s6">
+		<i class="material-icons prefix search-icon">search</i>
+		<input type="text" ng-model="trackCtrl.search" ng-enter="trackCtrl.searchTrack(trackCtrl.search)">
+		<label for="search">Search</label>
+	</div>
+	<ul class="collection col s12 offset-m1 m10 offset-l2 l8">
+		<li class="collection-item avatar" ng-repeat="data in trackCtrl.items">
+			<i class="material-icons circle green">play_arrow</i>
+			<span class="Title">{{data.title}}</span>
+			<p>
+				<span class="genre" ng-repeat="g in data.genres " >{{g.name}}{{$last ? '' : ' | '}}</span>
+			</p>
+			<span class="stars-container" 
+				ng-class="{stars0: data.rating == 0,stars10: data.rating == .5,stars20: data.rating == 1,stars30: data.rating == 1.5,stars40: data.rating == 2,stars50: data.rating == 2.5,stars60: data.rating == 3,stars70: data.rating == 3.5,stars80: data.rating == 4,stars90: data.rating == 4.5,stars100: data.rating == 5}">★★★★★</span>
+			<span class="secondary-content"><a ng-click="trackCtrl.openEditModal(data)"><i class="material-icons">mode_edit</i></a></span>
+		</li>
+	</ul>
+	<div class="col offset-s4 s6 offset-m5 m6 offset-l5 l6">
+		<a class="waves-effect waves-light btn modal-trigger" href="#track-modal">ADD TRACK</a>
+	</div>
+	<ul ng-if="trackCtrl.pager.pages.length" class="pagination col s12 offset-m3 m8 offset-l4 l6">
+	    
+	    <li ng-class="{disabled:trackCtrl.pager.currentPage === 1}">
+	    	<a ng-click="trackCtrl.setPage(trackCtrl.pager.currentPage - 1)">
+	    		<i class="material-icons">chevron_left</i>
+	    	</a>
+	    </li>
+	    <li class="waves-effect" ng-repeat="page in trackCtrl.pager.pages" 
+	    	ng-class="{active:trackCtrl.pager.currentPage === page}">
+	    	<a ng-click="trackCtrl.setPage(page)">{{page}}</a>
+	    </li>
+	    <li class="waves-effect" ng-class="{disabled:trackCtrl.pager.currentPage === trackCtrl.pager.totalPages}">
+		    <a ng-click="trackCtrl.setPage(trackCtrl.pager.currentPage + 1)">
+		    	<i class="material-icons">chevron_right</i>
+		    </a>
+	    </li>
+	</ul>
+</div>
+
+<!-- - - - - - - - - - Modals - - - - - - - - - -->
+
+<div id="track-modal" class="modal">
+    <div class="modal-content">
+		<h4 class="modal-title">Add Track</h4>
+		<div class="input-field col s6">
+			<input type="text" ng-model="trackCtrl.track.title">
+			<label for="title">Title</label>
+        </div>
+        <div class="input-field col s6">
+        	<label for="title">Genre(comma seperated)</label>
+			<input type="text" ng-model="trackCtrl.track.genre"></input>
+			
+        </div>
+        <div class="input-field col s6">
+			<input type="text" ng-model="trackCtrl.track.rating"></input>
+			<label for="title">Rating</label>
+        </div>
+    </div>
+    <div class="modal-footer">
+		<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" ng-click="trackCtrl.addTrack(trackCtrl.track)">ADD</a>
+    </div>
+</div>
+
+<div id="edit-modal" class="modal">
+    <div class="modal-content">
+		<h4 class="modal-title">Edit Track</h4>
+		<div class="input-field col s6">
+			<input type="text" id="title" ng-model="trackCtrl.track.title">
+			<label class="active" for="title">Title</label>
+        </div>
+        <div class="row">
+	        <div class="input-field col s3" ng-repeat="genre in trackCtrl.track.genres">
+				<input type="text" id="genre" ng-model="genre.name" ></input>
+				<label class="active" for="genre">Genre {{$index + 1}}</label>
+	        </div>
+        </div>
+        <div class="input-field col s6">
+			<input type="text" id="rating" ng-model="trackCtrl.track.rating"></input>
+			<label class="active" for="rating">Rating</label>
+        </div>
+    </div>
+    <div class="modal-footer">
+		<a class=" modal-action modal-close waves-effect waves-green btn-flat" ng-click="trackCtrl.editTrack(trackCtrl.track)">EDIT</a>
+    </div>
+</div>

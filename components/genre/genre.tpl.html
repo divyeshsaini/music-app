@@ -1,0 +1,68 @@
+<div class="row content">	
+	<div class="row header">
+		<div class="col s7 l6">
+			<p class="right-align">Track's Genres</p>
+		</div>
+		<div class="col s5 l4">
+			<a class="waves-effect waves-light btn center-align" ng-click="genreCtrl.getTracks()">Tracks</a>
+		</div>
+	</div>
+	<ul class="collection col s12 offset-m2 m8 offset-l3 l6">
+		<li class="collection-items" ng-repeat="genre in genreCtrl.items">			
+			<p>				
+				<span class="Title">{{genre.name}}</span>
+				<span class="secondary-content align-right"><a ng-click="genreCtrl.openEditModal(genre)"><i class="material-icons">mode_edit</i></a></span>
+			</p>			
+		</li>
+	</ul>
+	<div class="col offset-s4 s6 offset-m5 m6 offset-l5 l6">
+		<a class="waves-effect waves-light btn modal-trigger" ng-click="genreCtrl.openAddModal(genre)">ADD GENRE</a>
+	</div>
+
+	<ul ng-if="genreCtrl.pager.pages.length" class="pagination col s12 offset-m3 m8 offset-l4 l6 ">
+	    
+	    <li ng-class="{disabled:genreCtrl.pager.currentPage === 1}">
+	    	<a ng-click="genreCtrl.setPage(genreCtrl.pager.currentPage - 1)">
+	    		<i class="material-icons">chevron_left</i>
+	    	</a>
+	    </li>
+	    <li class="waves-effect" ng-repeat="page in genreCtrl.pager.pages" 
+	    	ng-class="{active:genreCtrl.pager.currentPage === page}">
+	    	<a ng-click="genreCtrl.setPage(page)">{{page}}</a>
+	    </li>
+	    <li class="waves-effect" ng-class="{disabled:genreCtrl.pager.currentPage === genreCtrl.pager.totalPages}">
+		    <a ng-click="genreCtrl.setPage(genreCtrl.pager.currentPage + 1)">
+		    	<i class="material-icons">chevron_right</i>
+		    </a>
+	    </li>
+	</ul>
+
+</div>
+
+<!-- - - - - - - - - - Modals - - - - - - - - - -->
+
+<div id="genre-modal" class="modal">
+    <div class="modal-content">
+		<h4 class="modal-title">Add Genre</h4>
+		<div class="input-field col s6">
+			<input type="text" ng-model="genreCtrl.genre.name">
+			<label for="title">Title</label>
+        </div>
+    </div>
+    <div class="modal-footer">
+		<a class=" modal-action modal-close waves-effect waves-green btn-flat" ng-click="genreCtrl.addGenre(genreCtrl.genre.name)">ADD</a>
+    </div>
+</div>
+
+<div id="edit-modal" class="modal">
+    <div class="modal-content">
+		<h4 class="modal-title">Edit Genre</h4>
+		<div class="input-field col s6">
+			<input type="text" id="title" ng-model="genreCtrl.genre.name">
+			<label class="active" for="title">Title</label>
+        </div>
+    </div>
+    <div class="modal-footer">
+		<a class=" modal-action modal-close waves-effect waves-green btn-flat" ng-click="genreCtrl.editGenre(genreCtrl.genre)">EDIT</a>
+    </div>
+</div>

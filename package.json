@@ -1,0 +1,15 @@
+{
+  "name": "music-app",
+  "version": "1.0.0",
+  "description": "A music app where users can see tracks and perform CRUD operation.",
+  "main": "web.js",
+  "dependencies": {
+    
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
