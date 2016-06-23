@@ -2,9 +2,8 @@
   "name": "music-app",
   "version": "1.0.0",
   "description": "A music app where users can see tracks and perform CRUD operation.",
-   "main": "server.js",
   "dependencies": {
-    "ejs": "~1.0.0",
+    "ejs": "^1.0.0",
     "express": "^4.14.0"
   },
   "devDependencies": {},
