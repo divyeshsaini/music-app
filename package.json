@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A music app where users can see tracks and perform CRUD operation.",
   "dependencies": {
-    "ejs": "^1.0.0",
+    "ejs": ">=2.5.5",
     "express": "^4.14.0"
   },
   "devDependencies": {},
